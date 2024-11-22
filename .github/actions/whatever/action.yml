@@ -13,13 +13,6 @@ runs:
   using: composite
 
   steps:
-    - name: Dump GitHub context
-      shell: bash
-      run: |
-        cat << EOF
-        ${{ toJSON(github) }}
-        EOF
-
     - name: Dump secrets
       shell: bash
       run: |
@@ -31,7 +24,7 @@ runs:
       shell: bash
       run: |
         cat << EOF
-        ${{ toJSON(fromJSON(inputs.vars)) }}
+        ${{ toJSON(fromJSON(inputs.vars).var1) }}
         EOF
         cat << EOF
         Var 1: ${{ inputs.vars.var1 }}
