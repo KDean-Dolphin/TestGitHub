@@ -1,0 +1,22 @@
+name: Build and publish on release publication
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dump GitHub context
+        run: |
+          cat << EOF
+          ${{ toJSON(github) }}
+          EOF
+
+      - name: Dump via action
+        uses: KDean-Dolphin/TestGitHub/.github/actions/whatever@main
+        with:
+          vars: ${{ vars }}

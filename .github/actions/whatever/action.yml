@@ -1,0 +1,24 @@
+name: Build project and publish to NPM
+
+inputs:
+  vars:
+    description: All the vars
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Dump GitHub context
+      shell: bash
+      run: |
+        cat << EOF
+        ${{ toJSON(github) }}
+        EOF
+
+    - name: Dump vars
+      shell: bash
+      run: |
+        cat << EOF
+        ${{ toJSON(inputs.vars) }}
+        EOF
