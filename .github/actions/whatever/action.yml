@@ -4,6 +4,9 @@ inputs:
   vars:
     description: All the vars
     required: true
+  secrets:
+    description: All the secrets
+    required: true
 
 runs:
   using: composite
@@ -16,9 +19,16 @@ runs:
         ${{ toJSON(github) }}
         EOF
 
+    - name: Dump secrets
+      shell: bash
+      run: |
+        cat << EOF
+        ${{ toJSON(fromJSON(inputs.secrets)) }}
+        EOF
+
     - name: Dump vars
       shell: bash
       run: |
         cat << EOF
-        ${{ toJSON(inputs.vars) }}
+        ${{ toJSON(fromJSON(inputs.vars)) }}
         EOF
