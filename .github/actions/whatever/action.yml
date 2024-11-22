@@ -24,8 +24,8 @@ runs:
       shell: bash
       run: |
         cat << EOF
-        ${{ toJSON(fromJSON(inputs.vars).var1) }}
+        ${{ toJSON(fromJSON(inputs.vars)) }}
         EOF
         cat << EOF
-        Var 1: ${{ inputs.vars.var1 }}
+        Var 1: ${{ fromJSON(inputs.vars).var1 }}
         EOF
