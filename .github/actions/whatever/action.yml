@@ -8,6 +8,7 @@ inputs:
     description: All the secrets
     required: true
 
+
 runs:
   using: composite
 
@@ -31,4 +32,7 @@ runs:
       run: |
         cat << EOF
         ${{ toJSON(fromJSON(inputs.vars)) }}
+        EOF
+        cat << EOF
+        Var 1: ${{ inputs.vars.var1 }}
         EOF
